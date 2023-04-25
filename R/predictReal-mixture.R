@@ -182,6 +182,12 @@ predictReal <- function(object, newexperts = NULL, newY = NULL, awake = NULL,
                         "training" = object$training,
                         "default" =  default, "quiet" = quiet)
     }
+
+    if (object$model == "SuperLearner") {
+        newobject <- SuperLearner(y = newY, experts = newexperts, 
+                         awake = awake, loss.type = object$loss.type, 
+                         w0 = object$coefficients, training = object$training, quiet = quiet)
+    }
     
     
     newobject$Y <- rbind(object$Y, matrix(newY, ncol = object$d))
